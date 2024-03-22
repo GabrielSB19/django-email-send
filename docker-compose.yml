@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=
+      - DB_NAME=
+      - DB_HOST=
+      - DB_USER=
+      - DB_PASS=
+      - DEBUG=
+    volumes:
+      - .:/home/app/webapp  # Mount the current directory to /home/app/webapp in the container
+
