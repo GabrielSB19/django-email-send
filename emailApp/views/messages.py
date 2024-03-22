@@ -83,7 +83,7 @@ class MessageView(APIView):
                 'subject': request.data['subject'],
                 'body': request.data['body'],
                 'from_user': User.objects.get(email=request.data['from_user']),
-                'category_id': request.data.get('category_id', 0)
+                'category_id': request.data.get('category_id', 1)
             } 
             serializer_from = MessageFromSerializer(data=message_data)
             
@@ -100,6 +100,7 @@ class MessageView(APIView):
                 else:
                     return Response({'message': 'Invalid data for MessageTo'}, status=status.HTTP_400_BAD_REQUEST)
             else:
+                print(serializer_from.errors)
                 return Response({'message': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
